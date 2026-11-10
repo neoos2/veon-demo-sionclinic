@@ -1,0 +1,37 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { directions, directionsMinor, futureNote, license, phone, socials, telegram } from "../data/site";
+const links = [...directions.map((d) => d.name), ...directionsMinor.map((d) => d.name)];
+---
+<footer class="site-footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand">
+      <a href="#top" class="logo" aria-label="Sion Clinic — на початок сторінки"><img src="img/sion-logo.png" width="400" height="194" alt="Sion Clinic, Petra &amp; Pavla" /></a>
+      <p class="small">Гаряча лінія 24/7<br /><a class="footer-phone" href={phone.href}>{phone.display}</a></p>
+    </div>
+    <div>
+      <h2 class="footer-h">Напрями</h2>
+      <ul class="footer-list">
+        {links.map((l) => <li><FutureLink note={futureNote}>{l}</FutureLink></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-h">Клініка</h2>
+      <ul class="footer-list">
+        <li><a href="#about">Про клініку</a></li>
+        <li><a href="#doctors">Лікарі</a></li>
+        <li><a href="#prices">Ціни</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+        <li><FutureLink note={futureNote}>Політика конфіденційності</FutureLink></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-h">Ми в мережі</h2>
+      <ul class="footer-list">
+        <li><a href={telegram} target="_blank" rel="noopener">Telegram</a></li>
+        {socials.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.name}</a></li>)}
+      </ul>
+    </div>
+    <p class="footer-license small">Ліцензія МОЗ України {license.no} від {license.date}. Психіатричний напрям комплексу «Петра і Павла».</p>
+  </div>
+</footer>

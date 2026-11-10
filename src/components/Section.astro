@@ -1,0 +1,8 @@
+---
+// Section shell: id from the veon-concept `sections` list, optional data-rec link to recommendations.
+interface Props { id: string; rec?: string; class?: string; label?: string; labelledby?: string; track?: boolean; }
+const { id, rec, class: cls, label, labelledby, track } = Astro.props;
+---
+<section id={id} data-rec={rec} class:list={[cls, { "track-sec": track }]} aria-label={label} aria-labelledby={labelledby} data-track={track ? "" : undefined}>
+  <slot />
+</section>

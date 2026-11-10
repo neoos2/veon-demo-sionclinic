@@ -1,0 +1,207 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import FutureLink from "../components/FutureLink.astro";
+import Icon from "../components/Icon.astro";
+import { address, directions, directionsMinor, doctors, futureNote, license, mapUrl, phone, phone2, prices, socials, steps, telegram, urgent } from "../data/site";
+
+const title = "Психіатрична й наркологічна клініка в Києві 24/7 | Sion Clinic";
+const description = "Приватна клініка «Сіон» у Києві: психіатрія, лікування алкогольної та наркотичної залежності, ігроманії. Анонімно, без постановки на облік. Гаряча лінія 24/7.";
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  name: "Психіатрична клініка «Сіон» (Sion Clinic)",
+  telephone: phone.display.replace(/\s/g, ""),
+  address: { "@type": "PostalAddress", streetAddress: "вул. Миколи Голего, 5", addressLocality: "Київ", addressCountry: "UA" },
+  contactPoint: { "@type": "ContactPoint", telephone: phone.display.replace(/\s/g, ""), contactType: "гаряча лінія", hoursAvailable: { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], opens: "00:00", closes: "23:59" } },
+  sameAs: socials.map((s) => s.url),
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <Header slot="header" />
+
+  <Section id="hero" rec="U-R001, U-R014, SEO-R001, SEO-R002, W-R003" class="hero track-m" labelledby="h1" track>
+    <div class="wrap grid">
+      <h1 id="h1" class="hero__h1">Приватна психіатрична й&nbsp;наркологічна клініка в&nbsp;Києві</h1>
+      <p class="lead hero__lead">Відповідаємо цілодобово. Анонімно й без постановки на облік.</p>
+      <div class="call-row hero__row">
+        <div class="call-line" aria-hidden="true"><i></i></div>
+        <a class="phone" href={phone.href}>{phone.display}</a>
+      </div>
+      <div class="hero__rest">
+        <div class="actions" id="hero-actions">
+          <a class="btn btn--primary" href={phone.href}><Icon name="phone" />Подзвонити 24/7</a>
+          <a class="btn btn--outline" href={telegram} target="_blank" rel="noopener"><Icon name="telegram" />Написати в Telegram</a>
+        </div>
+        <p class="crisis">Якщо є пряма загроза життю — телефонуйте <a href="tel:103">103</a> або <a href="tel:112">112</a>.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="urgent" rec="U-R003" class="urgent on-night" labelledby="h-urgent" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-urgent">Допомога зараз</h2></div>
+      <ul class="urgent__list">
+        {urgent.map((u) => (
+          <li class="urgent__row">
+            <h3>{u.title}</h3>
+            <p class="urgent__what">{u.what}</p>
+            <p class="urgent__price">{u.price}</p>
+            <a class="urgent__call" href={phone.href}>Подзвонити <Icon name="arrow" size={18} /></a>
+          </li>
+        ))}
+      </ul>
+      <p class="urgent__note small">Остаточна вартість визначається після консультації.</p>
+    </div>
+  </Section>
+
+  <Section id="directions" rec="U-R004" class="directions" labelledby="h-dir" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-dir">Напрями лікування</h2></div>
+      <ul class="dir-list">
+        {directions.map((d) => (
+          <li class="dir-row">
+            <h3>{d.name}</h3>
+            <p class="dir-states">{d.states}</p>
+            <FutureLink note={futureNote} class="dir-more">Детальніше: {d.more}</FutureLink>
+          </li>
+        ))}
+        <li class="dir-row dir-row--minor">
+          <h3>Також</h3>
+          <ul>
+            {directionsMinor.map((d) => <li><FutureLink note={futureNote} class="dir-more">{d.name}</FutureLink></li>)}
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </Section>
+
+  <Section id="anonymity" rec="U-R005" class="anonymity" labelledby="h-anon" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-anon" class="statement">Анонімно. Без постановки на облік.</h2></div>
+      <ul class="facts">
+        <li>Гаряча лінія працює цілодобово й анонімно.</li>
+        <li>Лікування без постановки на облік.</li>
+        <li>Якщо говорити вголос важко — напишіть у Telegram.</li>
+      </ul>
+      <div class="actions anonymity__actions">
+        <a class="btn btn--primary" href={phone.href}><Icon name="phone" />Подзвонити 24/7</a>
+        <a class="btn btn--outline" href={telegram} target="_blank" rel="noopener"><Icon name="telegram" />Написати в Telegram</a>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="process" class="process track-m" labelledby="h-proc" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-proc">Як усе відбувається</h2></div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step" data-reveal style={`--i:${i}`}>
+            <span class="step__node" aria-hidden="true"></span>
+            <span class="step__n" aria-hidden="true">{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="process__note">Прийом — за попереднім записом.</p>
+    </div>
+  </Section>
+
+  <Section id="stay" class="stay" labelledby="h-stay" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-stay">Стаціонар</h2></div>
+      <figure class="stay__photo stay__photo--main">
+        <img src="img/stay-ward-1200.webp" srcset="img/stay-ward-600.webp 600w, img/stay-ward-1200.webp 1200w" sizes="(min-width: 1100px) 760px, 100vw" width="1200" height="804" loading="lazy" decoding="async" alt="Стаціонарне відділення клініки: дві функціональні ліжка і монітор біля вікна" />
+        <figcaption>Стаціонарне відділення: палата з функціональними ліжками</figcaption>
+      </figure>
+      <div class="stay__text">
+        <p>Палати стандарт, напівлюкс і люкс, відділення реанімації.</p>
+        <p>Клініка працює автономно: світло, вода й комфорт зберігаються під час відключень. Поруч є обладнане укриття.</p>
+        <p>Реабілітація — наркологічна, неврологічна й посттравматична.</p>
+        <FutureLink note={futureNote} class="text-link">Детальніше про стаціонар <Icon name="arrow" size={18} /></FutureLink>
+      </div>
+      <figure class="stay__photo stay__photo--aside">
+        <img src="img/stay-lounge-1200.webp" srcset="img/stay-lounge-600.webp 600w, img/stay-lounge-1200.webp 1200w" sizes="(min-width: 1100px) 400px, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Кімната відпочинку клініки з кріслами та рослинами біля панорамних вікон" />
+        <figcaption>Кімната відпочинку</figcaption>
+      </figure>
+    </div>
+  </Section>
+
+  <Section id="doctors" rec="U-R006" class="doctors" labelledby="h-doc" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-doc">Лікарі</h2></div>
+      <ul class="doc-list">
+        {doctors.map((d) => (
+          <li class="doc">
+            <div class="doc__ph">
+              <img src={`img/${d.img}-400.webp`} srcset={d.w === 800 ? `img/${d.img}-400.webp 400w, img/${d.img}-800.webp 800w` : undefined} sizes="(min-width: 1100px) 440px, (min-width: 768px) 33vw, 100vw" width="400" height="500" loading="lazy" decoding="async" alt={`${d.name}, ${d.role.toLowerCase()}`} />
+            </div>
+            <h3>{d.name}</h3>
+            <p class="doc__role">{d.role}{d.extra ? `. ${d.extra}` : ""}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="doctors__team">У команді 18 фахівців: 7 лікарів, 9 психологів, старша медсестра і фельдшер.</p>
+      <p class="doctors__more"><FutureLink note={futureNote} class="text-link">Уся команда <Icon name="arrow" size={18} /></FutureLink></p>
+    </div>
+  </Section>
+
+  <Section id="prices" rec="U-R008" class="prices" labelledby="h-price" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-price">Вартість</h2></div>
+      <table class="price-table">
+        <caption class="visually-hidden">Орієнтовні ціни основних послуг, грн</caption>
+        <tbody>
+          {prices.map((p) => <tr><th scope="row">{p.s}</th><td>{p.v}</td></tr>)}
+        </tbody>
+      </table>
+      <p class="prices__note">Остаточна вартість — після консультації.</p>
+      <p class="prices__more"><FutureLink note={futureNote} class="text-link">Усі ціни <Icon name="arrow" size={18} /></FutureLink></p>
+    </div>
+  </Section>
+
+  <Section id="about" rec="U-R006" class="about" labelledby="h-about" track>
+    <div class="wrap grid">
+      <div class="section-head"><h2 id="h-about">Про клініку</h2></div>
+      <p class="about__lic"><span class="about__no">Ліцензія МОЗ України {license.no}</span><span class="about__date">від {license.date}</span></p>
+      <div class="about__text">
+        <p>«Сіон» — психіатричний напрям комплексу приватної клініки «Петра і Павла».</p>
+        <p>Повний цикл допомоги: від екстреної допомоги та виїзду додому до стаціонару й реабілітації. Психіатрія дорослих і дітей, лікування алкогольної, наркотичної залежності та ігроманії.</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section id="contacts" class="contacts track-m" labelledby="h-cont" track>
+    <div class="wrap grid">
+      <div class="close-wrap">
+        <div class="section-head"><h2 id="h-cont">Контакти</h2></div>
+        <p class="phone-label contacts__label">Гаряча лінія, цілодобово</p>
+        <div class="call-row contacts__row">
+          <div class="call-line" aria-hidden="true"><i></i></div>
+          <a class="phone" href={phone.href}>{phone.display}</a>
+        </div>
+      </div>
+      <div class="contacts__body">
+        <div class="actions">
+          <a class="btn btn--primary" href={phone.href}><Icon name="phone" />Подзвонити 24/7</a>
+          <a class="btn btn--outline" href={telegram} target="_blank" rel="noopener"><Icon name="telegram" />Написати в Telegram</a>
+        </div>
+        <dl class="contacts__list">
+          <div><dt>Другий номер</dt><dd><a href={phone2.href}>{phone2.display}</a></dd></div>
+          <div><dt>Адреса</dt><dd>{address}</dd></div>
+          <div><dt>Як дістатися</dt><dd>Від станції метро «Шулявська» — 20–25 хвилин пішки. Від зупинки «Караваєві дачі» — 8–10 хвилин.</dd></div>
+          <div><dt>Прийом</dt><dd>Лише за попереднім записом: телефоном або в Telegram.</dd></div>
+        </dl>
+        <a class="text-link" href={mapUrl} target="_blank" rel="noopener"><Icon name="pin" size={18} /> Відкрити адресу на карті</a>
+      </div>
+    </div>
+  </Section>
+
+  <Footer slot="footer" />
+  <MobileBar slot="after" />
+</Base>

@@ -1,0 +1,8 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { futureNote } from "../data/site";
+---
+<div class="lang" data-rec="U-R011" role="group" aria-label="Мова сайту">
+  <span class="lang__on" aria-current="true" lang="uk">UA</span>
+  <FutureLink note={futureNote} class="lang__off"><span lang="ru">RU</span></FutureLink>
+</div>

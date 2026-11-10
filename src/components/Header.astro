@@ -1,0 +1,35 @@
+---
+import Icon from "./Icon.astro";
+import Lang from "./Lang.astro";
+import { nav, phone, telegram } from "../data/site";
+---
+<header class="site-header" id="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="#top" aria-label="Sion Clinic — на початок сторінки">
+      <img src="img/sion-logo.png" width="400" height="194" alt="Sion Clinic, Petra &amp; Pavla" fetchpriority="high" />
+    </a>
+    <nav class="nav" id="menu" aria-label="Головне меню">
+      <div class="nav__actions">
+        <a class="btn btn--primary" href={phone.href}><Icon name="phone" />Подзвонити 24/7</a>
+        <a class="btn btn--outline" href={telegram} target="_blank" rel="noopener"><Icon name="telegram" />Telegram</a>
+      </div>
+      <ul class="nav__list">
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      </ul>
+      <div class="nav__lang"><Lang /></div>
+    </nav>
+    <div class="header-right">
+      <a class="header-phone" href={phone.href}>
+        <span class="header-phone__num">{phone.display}</span>
+        <span class="header-phone__sub">цілодобово · анонімно</span>
+      </a>
+      <a class="btn btn--outline btn--sm" href={telegram} target="_blank" rel="noopener">Telegram</a>
+      <Lang />
+    </div>
+    <a class="header-call" href={phone.href}>Подзвонити</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="burger__open"><Icon name="menu" /><span class="burger__t">Меню</span></span>
+      <span class="burger__close"><Icon name="close" /><span class="burger__t">Закрити</span></span>
+    </button>
+  </div>
+</header>

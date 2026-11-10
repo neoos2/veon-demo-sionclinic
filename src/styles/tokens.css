@@ -1,0 +1,54 @@
+/* Hallmark · shape: line track · genre: editorial · theme: custom · job: book · idea: "Одна лінія — від першого дзвінка до одужання" · vibe: "тихо, гідно, анонімно, завжди на зв'язку"
+ * paper: #F4F8F7 · accent: #2BBFCA · display: Piazzolla · body: Onest · hero: H1 на всю ширину, лінія з доріжки веде до номера гарячої лінії, дві дії під номером · nav: одна лінія, 7 якорів, номер і Telegram праворуч · footer: світлий, колонки · imagery: client photos · signature: наскрізна бірюзова лінія від номера до номера
+ * axes: light/roman-serif/chromatic-teal · posture: committed · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery, фасаду в матеріалах клієнта немає: показуємо лише справжні фото клініки без імітації, решту несе типографіка і лінія */
+/* Client design tokens: one system, filled from design/concept.md (veon-concept). Colours and fonts only through these variables. */
+:root {
+  /* colour */
+  --color-bg: #F4F8F7;
+  --color-mist: #E2EEEC;
+  --color-text: #132A2D;
+  --color-muted: #4A6265;
+  --color-primary: #0D4A50;
+  --color-on-primary: #F4F8F7;
+  --color-link: #0A6870;
+  --color-night: #0B2A2E;
+  --color-on-night: #E9F3F2;
+  --color-muted-night: #A9C3C2;
+  --color-accent: #2BBFCA; /* line, focus on dark: graphics only, never text on light */
+  --color-accent-ink: #0B2A2E; /* text on an accent fill */
+  --color-line-soft: rgba(19, 42, 45, .16);
+  --color-line-night: rgba(233, 243, 242, .22);
+
+  /* type */
+  --font-display: "Piazzolla Variable", "Piazzolla Fallback", Georgia, "Times New Roman", serif;
+  --font-body: "Onest Variable", "Onest Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-h1: clamp(2.125rem, 1.35rem + 3.4vw, 4rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.2vw, 3rem);
+  --fs-h3: clamp(1.5rem, 1.25rem + 0.9vw, 1.75rem);
+  --fs-phone: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  --fs-body: clamp(1.0625rem, 1.03rem + .15vw, 1.125rem);
+  --fs-small: .9375rem;
+
+  /* shape and rhythm (4/8 scale) */
+  --radius: 8px;
+  --space: 20px;
+  --pad: 20px;
+  --gap: 24px;
+  --container: 1360px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px; --s-11: 160px;
+  --section-y: var(--s-9);
+  --header-h: 56px;
+  --line-w: 2px;
+
+  /* motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 600ms;
+  --dur-fast: 200ms;
+}
+@media (min-width: 768px) {
+  :root { --pad: 32px; --section-y: 112px; --header-h: 64px; --s-section: 112px; }
+}
+@media (min-width: 1100px) {
+  :root { --pad: 64px; --section-y: 112px; --header-h: 72px; }
+}
